@@ -2,8 +2,6 @@
   aaaaaaaaaaaaaaaaa: false
   bbbbbbbbbbbbbbbbb: false
 commder:
-  - "help"
-  - "tpa %Player%"
-  - "fly %Player%"
+  - "noppes quest start %Player% 627"
 gitUpdata: 0000-00-00
 Version: 1.0.0

@@ -29,6 +29,8 @@ public class Config {
                 + "，你的配置文件版本为：" + config_data.getString("Version"));
 
         commder_list = config_data.getStringList("commder");
+        for(String a :commder_list)
+            log.info("添加指令" + a);
         Map<String, Object> a = config_data.getConfigurationSection("giftCode").getValues(false);
         for(Map.Entry<String, Object> entry : a.entrySet()){
             cdk_list.put(entry.getKey(), (Boolean) entry.getValue());
