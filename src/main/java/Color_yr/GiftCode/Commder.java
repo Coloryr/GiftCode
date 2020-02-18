@@ -71,22 +71,21 @@ public class Commder implements CommandExecutor, TabExecutor {
                         sender.sendMessage("§d[GiftCode]§e使用激活码" + args[0]);
                         Logs log = new Logs();
                         log.log_write("玩家" + sender.getName() + "使用激活码：" + args[0]);
-                        Bukkit.getScheduler().callSyncMethod(Config.GiftCode, new Callable<Boolean>() {
+                        Bukkit.getScheduler().runTaskAsynchronously(Config.GiftCode, new Runnable() {
                             @Override
-                            public Boolean call() {
+                            public void run() {
                                 for (String b : Config.commder_list) {
                                     send_bukkit.message.clear();
                                     b = b.replace("%Player%", sender.getName());
-                                    Bukkit.dispatchCommand(send_bukkit.sender, b);
+                                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), b);
                                     if (send_bukkit.message.size() != 0) {
                                         for (String a : send_bukkit.message) {
                                             sender.sendMessage(a);
                                         }
                                     }
                                 }
-                                return true;
                             }
-                        }).get();
+                        });
                     } catch (Exception e) {
                         Config.log.warning(e.toString());
                     }
